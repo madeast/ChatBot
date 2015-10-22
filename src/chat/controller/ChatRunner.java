@@ -9,7 +9,7 @@ public class ChatRunner
 {
 	public static void main (String[] args)
 	{
-	chatController mycontroller = new chatController();
+	ChatController mycontroller = new ChatController();
 	mycontroller.start();
 	}
 }
