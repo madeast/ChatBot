@@ -16,10 +16,4 @@ public class ChatController
 	{
 		
 	}
-	
-	/*public boolean StringChecker(String input)
-	{
-		boolean isString = false;
-		
-	}*/
 }
