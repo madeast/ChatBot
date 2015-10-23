@@ -23,6 +23,21 @@ public class Chatbot
 	public Chatbot(String userName)
 	{
 		this.userName = userName;
+		this.content = "Motivation";
+		this.memesList = new ArrayList<String>();
+		/*
+		 * Bad Luck Brian
+		 * Rare Pepe
+		 * Doge
+		 * Me Gusta
+		 * Cute Animals
+		 * Troll
+		 * Spoderman
+		 * What if I told you
+		 * Unhelpful High School Teacher
+		 * Aliens
+		 */
+		this.politicalTopicList = new ArrayList<String>();
 	}
 	
 	private void buildMemesList()
@@ -109,7 +124,7 @@ public class Chatbot
 	 */
 	public String getContent()
 	{
-		return null;
+		return content;
 	}
 	
 	/**

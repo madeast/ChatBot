@@ -3,6 +3,7 @@ package chat.controller;
 import chat.view.ChatView;
 import chat.model.Chatbot;
 
+
 /**
  * Application controller for the Chatbot project.
  * @author Easton Madsen
@@ -13,6 +14,8 @@ public class ChatController
 {
 	private Chatbot myBot;
 	private ChatView myDisplay;
+	private Chatbot 
+	
 	
 	public ChatController()
 	{
