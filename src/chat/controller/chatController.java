@@ -14,7 +14,7 @@ public class ChatController
 {
 	private Chatbot myBot;
 	private ChatView myDisplay;
-	private Chatbot 
+	 
 	
 	
 	public ChatController()
@@ -27,5 +27,38 @@ public class ChatController
 	public void start()
 	{
 		myDisplay.showResponse("Hello " + myBot.getUserName());
+		chat();
+	}
+	
+	private void chat()
+	{
+		String conversation = myDisplay.chatInput("What would you like to talk about today?");
+		while(myBot.lengthChecker(conversation))
+		{
+			
+			if(myBot.contentChecker(conversation))
+			{
+				myDisplay.chatInput("Wow, I had no idea you're interested in " + myBot.getContent()) ;
+				
+			}
+			
+			
+//			if(!myBot.quitChecker(conversation))
+//			{
+//				conversation = myBot.processInput(conversation);
+//			}
+//			else
+//			{
+//				shutDown();
+//			}
+			
+			conversation = myDisplay.chatInput(conversation);
+		}
+		
+	}
+	
+	private void shutDown()
+	{
+		
 	}
 }
