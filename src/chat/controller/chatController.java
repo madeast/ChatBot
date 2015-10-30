@@ -38,10 +38,16 @@ public class ChatController
 			
 			if(myBot.contentChecker(conversation))
 			{
-				myDisplay.chatInput("Wow, I had no idea you're interested in " + myBot.getContent()) ;
-				
+				myDisplay.chatInput("Wow, I had no idea you're interested in " + myBot.getContent() + ".") ;
 			}
-			
+			else if(myBot.memeChecker(conversation))
+			{
+				myDisplay.chatInput("The dankest of memes.");
+			}
+			else if(myBot.politicalTopicChecker(conversation))
+			{
+				myDisplay.chatInput("What a political topic.");
+			}
 			
 //			if(!myBot.quitChecker(conversation))
 //			{

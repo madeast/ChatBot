@@ -49,6 +49,14 @@ public class Chatbot
 	
 	private void buildPoliticalTopicsList()
 	{
+		this.politicalTopicList.add("Putin");
+		this.politicalTopicList.add("Obama");
+		this.politicalTopicList.add("Syria");
+		this.politicalTopicList.add("Stormcloaks");
+		this.politicalTopicList.add("Empire");
+		this.politicalTopicList.add("Proxy War");
+		this.politicalTopicList.add("Unstable");
+		this.politicalTopicList.add("Rockets");
 		
 	}
 	
@@ -104,7 +112,16 @@ public class Chatbot
 	 */
 	public boolean politicalTopicChecker(String currentInput)
 	{
-		return false;
+		boolean hasPolitical = false;
+		
+		for(String currentPolitics: politicalTopicList)
+		{
+			if(currentInput.toLowerCase().contains(currentInput))
+			{
+				hasPolitical = true;
+			}
+		}
+		return hasPolitical;
 	}
 	
 	
@@ -119,7 +136,7 @@ public class Chatbot
 		
 		for(String currentMeme: memesList)
 		{
-			if(currentMeme.equalsIgnoreCase(currentInput))
+			if(currentMeme.contains(currentInput))
 			{
 				hasMemes = true;
 			}
