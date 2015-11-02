@@ -56,7 +56,7 @@ public class Chatbot
 		this.politicalTopicList.add("Empire");
 		this.politicalTopicList.add("Proxy War");
 		this.politicalTopicList.add("Unstable");
-		this.politicalTopicList.add("Rockets");
+		this.politicalTopicList.add("Talos");
 		
 	}
 	
