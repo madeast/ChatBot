@@ -35,8 +35,10 @@ public class ChatController
 		String conversation = myDisplay.chatInput("What would you like to talk about today?");
 		while(myBot.lengthChecker(conversation))
 		{
+			conversation = myBot.processConversation(conversation);
+			conversation = myDisplay.chatInput(conversation);
 			
-			if(myBot.contentChecker(conversation))
+			/*if(myBot.contentChecker(conversation))
 			{
 				myDisplay.chatInput("Wow, I had no idea you're interested in " + myBot.getContent() + ".") ;
 			}
@@ -48,6 +50,10 @@ public class ChatController
 			{
 				myDisplay.chatInput("What a political topic.");
 			}
+			else
+			{
+				myDisplay.chatInput("I've never heard of that topic before.");
+			}
 			
 //			if(!myBot.quitChecker(conversation))
 //			{
@@ -58,7 +64,7 @@ public class ChatController
 //				shutDown();
 //			}
 			
-			conversation = myDisplay.chatInput(conversation);
+			conversation = myDisplay.chatInput(conversation);*/
 		}
 		
 	}

@@ -144,6 +144,48 @@ public class Chatbot
 		return hasMemes;
 	}
 	
+	public String processConversation(String currentInput)
+	{
+		String nextConversation = "What else would you like to talk about?";
+		int randomTopic = (int) (Math.random() * 5); //Generates a random number between 0 and 4.
+		
+		switch (randomTopic)
+		{
+		case 0:
+			if(memeChecker(currentInput))
+			{
+				nextConversation = "Well aren't we in the loop, " + "what do you think of pepe?";
+			}
+			break;
+		case 1:
+			if(politicalTopicChecker(currentInput))
+			{
+				nextConversation = "A very intellectual thing to say.";
+			
+			}
+			break;
+		case 2:
+			if(contentChecker(currentInput))
+			{
+				nextConversation = "some words and a question";
+			}
+			break;
+		case 3:
+			if(currentInput.length() > 20)
+			{
+				nextConversation = "Well aren't we talkative.";
+			}
+			break;
+		case 4:
+			nextConversation = "some random words and a question";
+			break;
+		default:
+			nextConversation = "The universe has ended, sad panda.";
+			break;
+		}
+		return nextConversation;
+	}
+	
 	/**
 	 * Returns the username of this Chatbot instance.
 	 * @return The username of the Chatbot.
