@@ -161,7 +161,6 @@ public class Chatbot
 			if(politicalTopicChecker(currentInput))
 			{
 				nextConversation = "A very intellectual thing to say.";
-			
 			}
 			break;
 		case 2:
