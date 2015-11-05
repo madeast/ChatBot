@@ -17,7 +17,7 @@ public class ChatView
 	
 	public void showResponse(String wordsFromChat)
 	{
-		JOptionPane.showMessageDialog(null, wordsFromChat);
+		JOptionPane.showMessageDialog(null, wordsFromChat, windowMessage, JOptionPane.PLAIN_MESSAGE, chatIcon);
 	}
 
 	public String chatInput(String displayText)
