@@ -60,6 +60,34 @@ public class Chatbot
 		
 	}
 	
+	public boolean keyboardMashChecker(String currentInput)
+	{
+		boolean hasMash = false;
+		
+		if(currentInput.equals("sdf") || currentInput.equals("dfg") || currentInput.equals("cvb"))
+		{
+			hasMash = true;
+		}
+		else
+		{
+			
+		}
+		
+		return hasMash;
+	}
+	
+	public boolean quitChecker(String currentInput)
+	{
+		boolean hasQuit = false;
+		
+		if(currentInput.equals("exit") || currentInput.equals("quit"))
+		{
+			hasQuit = true;
+		}
+		
+		return hasQuit;
+	}
+	
 	/**
 	 * Checks the length of the supplied string. Returns false if the supplied String is empty or null,
 	 * otherwise returns true. 
