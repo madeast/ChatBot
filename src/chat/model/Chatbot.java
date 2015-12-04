@@ -2,6 +2,7 @@
 package chat.model;
 
 import java.util.ArrayList;
+import chat.controller.ChatController;
 
 /**
  * Base version of the 2015 Chatbot class. Only stub methods are provided. Students will complete methods as part
@@ -31,13 +32,16 @@ public class Chatbot
 		buildPoliticalTopicsList();
 	}
 	
+	/**
+	 * Creates a list of the dankest memes to show the world that they are the rarest Pepe.
+	 */
 	private void buildMemesList()
 	{
 		this.memesList.add("Bad Luck Brian");
 		this.memesList.add("Rare Pepe");
-		this.memesList.add("Doge");
+		this.memesList.add("doge");
 		this.memesList.add("Me Gusta");
-		this.memesList.add("Cute Animals");
+		this.memesList.add("cute animals");
 		this.memesList.add("Troll");
 		this.memesList.add("Spoderman");
 		this.memesList.add("What if I told You");
@@ -47,6 +51,9 @@ public class Chatbot
 		
 	}
 	
+	/**
+	 * Adds a list of topical things to say at parties
+	 */
 	private void buildPoliticalTopicsList()
 	{
 		this.politicalTopicList.add("Putin");
@@ -57,14 +64,23 @@ public class Chatbot
 		this.politicalTopicList.add("Proxy War");
 		this.politicalTopicList.add("Unstable");
 		this.politicalTopicList.add("Talos");
+		this.politicalTopicList.add("11/4/16");
+		this.politicalTopicList.add("Republican");
+		this.politicalTopicList.add("Democrat");
 		
 	}
+	
+	/**
+	 * Adds a function to prevent people from just mashing the keyboard
+	 * @param currentInput
+	 * @return
+	 */
 	
 	public boolean keyboardMashChecker(String currentInput)
 	{
 		boolean hasMash = false;
 		
-		if(currentInput.equals("sdf") || currentInput.equals("dfg") || currentInput.equals("cvb"))
+		if(currentInput.equals("sdf") || currentInput.equals("dfg") || currentInput.equals("cvb") || currentInput.equals(",./"))
 		{
 			hasMash = true;
 		}
@@ -76,11 +92,16 @@ public class Chatbot
 		return hasMash;
 	}
 	
+	/**
+	 * Adds a function to allow for people to quit if they're tired.
+	 * @param currentInput
+	 * @return
+	 */
 	public boolean quitChecker(String currentInput)
 	{
 		boolean hasQuit = false;
 		
-		if(currentInput.equals("exit") || currentInput.equals("quit"))
+		if(currentInput.equals("quit"))
 		{
 			hasQuit = true;
 		}
@@ -172,6 +193,11 @@ public class Chatbot
 		return hasMemes;
 	}
 	
+	/**
+	 * Reads the currentInput and decides what to say based on that.
+	 * @param currentInput
+	 * @return
+	 */
 	public String processConversation(String currentInput)
 	{
 		String nextConversation = "What else would you like to talk about?";
@@ -255,6 +281,8 @@ public class Chatbot
 	 */
 	public void setContent(String content)
 	{
-		
+		this.content = content;
 	}
+	
+
 }

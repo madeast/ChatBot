@@ -18,7 +18,9 @@ public class ChatController
 		private ChatFrame baseFrame;
 	 
 	
-	
+	/**
+	 * Constructs all the variables.
+	 */
 	public ChatController()
 	{
 		myDisplay = new ChatView();
@@ -27,12 +29,18 @@ public class ChatController
 		baseFrame = new ChatFrame(this);
 	}
 	
+	/**
+	 * Starts the program and tells it what to do on startup.
+	 */
 	public void start()
 	{
 		myDisplay.showResponse("Hello " + sampleBot.getUserName());
 		chat();
 	}
 	
+	/**
+	 * Allows the chatbot to continue the conversation
+	 */
 	private void chat()
 	{
 		String conversation = myDisplay.chatInput("What would you like to talk about today?");
@@ -72,6 +80,10 @@ public class ChatController
 		
 	}
 	
+	/**
+	 * The Getters and Setters of the class.
+	 * @return
+	 */
 	public Chatbot getMyBot()
 	{
 		return sampleBot;
@@ -80,16 +92,6 @@ public class ChatController
 	public void setMyBot(Chatbot myBot)
 	{
 		this.sampleBot = myBot;
-	}
-
-	public ChatView getMyDisplay()
-	{
-		return myDisplay;
-	}
-
-	public void setMyDisplay(ChatView myDisplay)
-	{
-		this.myDisplay = myDisplay;
 	}
 
 	public ChatFrame getBaseFrame()
@@ -102,9 +104,5 @@ public class ChatController
 		this.baseFrame = baseFrame;
 	}
 		
-	private void shutDown()
-	{
-		myDisplay.chatInput("Goodbye, " + sampleBot.getUserName() + " it has been meowtastic talking to you!");
-		System.exit(0);
-	}
+	
 }

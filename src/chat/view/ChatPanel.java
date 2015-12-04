@@ -5,6 +5,11 @@ import javax.swing.*;
 import java.awt.event.*;
 import java.awt.Color;
 
+/**
+ * Allows me to control all the design features of the chatbot frame.
+ * @author emad6932
+ *
+ */
 public class ChatPanel extends JPanel
 {
 	private ChatController baseController;
@@ -15,7 +20,10 @@ public class ChatPanel extends JPanel
 	private JLabel firstLabel;
 	
 	
-
+/**
+ * This sets on the varibles on the screen.
+ * @param baseController
+ */
 	public ChatPanel(ChatController baseController)
 	{
 		this.baseController = baseController;	
@@ -24,6 +32,7 @@ public class ChatPanel extends JPanel
 		firstTextField = new JTextField("Enter wordy things here.");
 		firstTextArea = new JTextArea(10, 20);
 		firstLabel = new JLabel("I Canz Haz Chatz");
+		
 	
 		
 		setupPanel();
@@ -31,6 +40,9 @@ public class ChatPanel extends JPanel
 		setupListeners();
 	}
 	
+	/**
+	 * This makes sure everything that is set on the screen.
+	 */
 	private void setupPanel()
 	{
 		this.setLayout(baseLayout);
@@ -38,26 +50,46 @@ public class ChatPanel extends JPanel
 		this.add(firstTextField);
 		this.add(firstButton);
 		this.add(firstLabel);
+		this.add(firstTextArea);
 		firstTextField.setToolTipText("Type here, and give me bell rubs");
-		firstTextArea.setEnabled(false);
 		//this.add(firstTextArea);
 	}
 	
+	/**
+	 * This is where junk code goes.
+	 */
 	private void setupLayout()
 	{
-		baseLayout.putConstraint(SpringLayout.WEST, firstTextField, 138, SpringLayout.WEST, this);
-		baseLayout.putConstraint(SpringLayout.SOUTH, firstTextField, -96, SpringLayout.SOUTH, this);
-		baseLayout.putConstraint(SpringLayout.NORTH, firstButton, 6, SpringLayout.SOUTH, firstTextField);
-		baseLayout.putConstraint(SpringLayout.WEST, firstLabel, 171, SpringLayout.WEST, this);
-		baseLayout.putConstraint(SpringLayout.SOUTH, firstLabel, -6, SpringLayout.NORTH, firstTextField);
+		baseLayout.putConstraint(SpringLayout.SOUTH, firstButton, -26, SpringLayout.SOUTH, this);
 		baseLayout.putConstraint(SpringLayout.EAST, firstButton, -10, SpringLayout.EAST, this);
+		baseLayout.putConstraint(SpringLayout.WEST, firstTextField, 138, SpringLayout.WEST, this);
+		baseLayout.putConstraint(SpringLayout.SOUTH, firstTextField, -6, SpringLayout.NORTH, firstButton);
+		baseLayout.putConstraint(SpringLayout.WEST, firstTextArea, 96, SpringLayout.WEST, this);
+		baseLayout.putConstraint(SpringLayout.SOUTH, firstTextArea, -6, SpringLayout.NORTH, firstLabel);
+		baseLayout.putConstraint(SpringLayout.WEST, firstLabel, 170, SpringLayout.WEST, this);
+		baseLayout.putConstraint(SpringLayout.SOUTH, firstLabel, -6, SpringLayout.NORTH, firstTextField);
 	}
 	
+	/**
+	 * Controls the Buttons.
+	 */
 	private void setupListeners()
 	{
-		
+		firstButton.addActionListener(new ActionListener()
+		{
+			public void actionPerformed(ActionEvent click)
+			{
+				
+			}
+		});
+			
+	
 	}
 	
+	/**
+	 * Getters and Setters for the class.
+	 * @return
+	 */
 	public ChatController getBaseController()
 	{
 		return baseController;

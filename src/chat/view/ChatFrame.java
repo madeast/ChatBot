@@ -3,11 +3,20 @@ package chat.view;
 import javax.swing.JFrame;
 import chat.controller.ChatController;
 
+/**
+ * Actual Area where all objects are set for the chatbot
+ * @author emad6932
+ *
+ */
 public class ChatFrame extends JFrame
 {
 	private ChatController baseController;
 	private ChatPanel basePanel;
 	
+	/**
+	 * Sets all the variables in the class.
+	 * @param baseController
+	 */
 	public ChatFrame(ChatController baseController)
 	{
 		this.baseController = baseController;
@@ -15,6 +24,9 @@ public class ChatFrame extends JFrame
 		setupFrame();
 	}
 	
+	/**
+	 * Sets the frame up, and uses the panel as a reference.
+	 */
 	private void setupFrame()
 	{
 		this.setContentPane(basePanel);
@@ -24,6 +36,10 @@ public class ChatFrame extends JFrame
 		this.setVisible(true);
 	}
 	
+	/**
+	 * Getters and Setters for the class
+	 * @return
+	 */
 	public ChatController getBaseController()
 	{
 		return baseController;
