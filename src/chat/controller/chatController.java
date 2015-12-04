@@ -94,6 +94,16 @@ public class ChatController
 		this.sampleBot = myBot;
 	}
 
+	public ChatView getMyDisplay()
+	{
+		return myDisplay;
+	}
+
+	public void setMyDisplay(ChatView myDisplay)
+	{
+		this.myDisplay = myDisplay;
+	}
+
 	public ChatFrame getBaseFrame()
 	{
 		return baseFrame;
@@ -104,5 +114,12 @@ public class ChatController
 		this.baseFrame = baseFrame;
 	}
 		
-	
+	/**
+	 * Shuts down the fuction with a friendly goodbye.
+	 */
+	private void shutDown()
+	{
+		myDisplay.chatInput("Goodbye, " + sampleBot.getUserName() + " it has been meowtastic talking to you!");
+		System.exit(0);
+	}
 }
