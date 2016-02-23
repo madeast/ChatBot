@@ -14,6 +14,10 @@ public class ChatPanel extends JPanel
 {
 	private ChatController baseController;
 	private JButton firstButton;
+	private JButton tweetButton;
+	private JButton saveButton;
+	private JButton loadButton;
+	private JScrollPane textPane;
 	private JTextField firstTextField;
 	private SpringLayout baseLayout;
 	private JTextArea firstTextArea;
@@ -29,17 +33,27 @@ public class ChatPanel extends JPanel
 		this.baseController = baseController;	
 		baseLayout = new SpringLayout();
 		firstButton = new JButton("This Button is just a conversation starter, and a treat giver!");
-		firstTextField = new JTextField("Enter wordy things here.");
-		firstTextArea = new JTextArea(10, 20);
 		firstLabel = new JLabel("I Canz Haz Chatz");
 		
-	
 		
+	
+		setupChatPane();
 		setupPanel();
 		setupLayout();
 		setupListeners();
 	}
 	
+	
+	private void setupChatPane()
+	{
+		textPane = new JScrollPane(firstTextArea);
+		
+		firstTextArea.setLineWrap(true);
+		firstTextArea.setWrapStyleWord(true);
+		firstTextArea.setEditable(false);
+		textPane.setVerticalScrollBarPolicy(ScrollPaneConstants.VERTICAL_SCROLLBAR_AS_NEEDED);
+		textPane.setHorizontalScrollBarPolicy(ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
+	}
 	/**
 	 * This makes sure everything that is set on the screen.
 	 */
@@ -47,10 +61,14 @@ public class ChatPanel extends JPanel
 	{
 		this.setLayout(baseLayout);
 		this.setBackground(Color.GREEN);
-		this.add(firstTextField);
 		this.add(firstButton);
+		this.add(tweetButton);
+		this.add(saveButton);
+		this.add(loadButton);
 		this.add(firstLabel);
-		this.add(firstTextArea);
+		this.add(textPane);
+		firstTextField = new JTextField("Enter wordy things here.");
+		this.add(firstTextField);
 		firstTextField.setToolTipText("Type here, and give me bell rubs");
 		//this.add(firstTextArea);
 	}
@@ -62,12 +80,16 @@ public class ChatPanel extends JPanel
 	{
 		baseLayout.putConstraint(SpringLayout.SOUTH, firstButton, -26, SpringLayout.SOUTH, this);
 		baseLayout.putConstraint(SpringLayout.EAST, firstButton, -10, SpringLayout.EAST, this);
+		baseLayout.putConstraint(SpringLayout.WEST, firstLabel, 170, SpringLayout.WEST, this);
+		baseLayout.putConstraint(SpringLayout.NORTH, textPane, 20, SpringLayout.NORTH, this);
+		baseLayout.putConstraint(SpringLayout.WEST, textPane, 100, SpringLayout.WEST, this);
+		baseLayout.putConstraint(SpringLayout.SOUTH, textPane, 250, SpringLayout.NORTH, this);
+		baseLayout.putConstraint(SpringLayout.EAST, textPane, -20, SpringLayout.EAST, this);
+		baseLayout.putConstraint(SpringLayout.SOUTH, firstLabel, -6, SpringLayout.NORTH, firstTextField);
 		baseLayout.putConstraint(SpringLayout.WEST, firstTextField, 138, SpringLayout.WEST, this);
 		baseLayout.putConstraint(SpringLayout.SOUTH, firstTextField, -6, SpringLayout.NORTH, firstButton);
-		baseLayout.putConstraint(SpringLayout.WEST, firstTextArea, 96, SpringLayout.WEST, this);
-		baseLayout.putConstraint(SpringLayout.SOUTH, firstTextArea, -6, SpringLayout.NORTH, firstLabel);
-		baseLayout.putConstraint(SpringLayout.WEST, firstLabel, 170, SpringLayout.WEST, this);
-		baseLayout.putConstraint(SpringLayout.SOUTH, firstLabel, -6, SpringLayout.NORTH, firstTextField);
+		baseLayout.putConstraint(SpringLayout.NORTH, firstTextArea, 10, SpringLayout.NORTH, this);
+		baseLayout.putConstraint(SpringLayout.EAST, firstTextArea, -73, SpringLayout.EAST, this);
 	}
 	
 	/**
