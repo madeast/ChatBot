@@ -20,7 +20,7 @@ public class ChatView
 	public String chatInput(String stuff)
 	{
 		String answer = "";
-		answer = JOptionPane.showInputDialog(null, stuff, windowMessage, JOptionPane.PLAIN_MESSAGE, chatIcon, null, "Answer here:)").toString();
+		answer = JOptionPane.showInputDialog(null, stuff, windowMessage, JOptionPane.PLAIN_MESSAGE, chatIcon, null, "Answer here:)")+"";
 		return answer;
 	}
 }

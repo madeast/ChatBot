@@ -120,6 +120,6 @@ public class ChatController
 	private void shutDown()
 	{
 		myDisplay.chatInput("Goodbye, " + sampleBot.getUserName() + " it has been meowtastic talking to you!");
-		System.exit(0);
+		//System.exit(0);
 	}
 }
