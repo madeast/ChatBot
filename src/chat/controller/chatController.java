@@ -115,7 +115,7 @@ public class ChatController
 	}
 		
 	/**
-	 * Shuts down the fuction with a friendly goodbye.
+	 * Shuts down the function with a friendly goodbye.
 	 */
 	private void shutDown()
 	{

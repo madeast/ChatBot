@@ -25,7 +25,7 @@ public class ChatPanel extends JPanel
 	
 	
 /**
- * This sets on the varibles on the screen.
+ * This sets on the variables on the screen.
  * @param baseController
  */
 	public ChatPanel(ChatController baseController)
