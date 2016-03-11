@@ -27,8 +27,8 @@ public class ChatController
 	public ChatController()
 	{
 		myDisplay = new ChatView();
-		String userName = myDisplay.chatInput("What is your name?");
-		sampleBot = new Chatbot(userName);
+		//String userName = myDisplay.chatInput("What is your name?");
+		sampleBot = new Chatbot("Name");
 		baseFrame = new ChatFrame(this);
 		chatTwitter = new CtecTwitter(this);
 	}
@@ -38,50 +38,25 @@ public class ChatController
 	 */
 	public void start()
 	{
-		myDisplay.showResponse("Hello " + sampleBot.getUserName());
-		chat();
+		//myDisplay.showResponse("Hello " + sampleBot.getUserName());
+		chat("me");
 	}
 	
 	/**
 	 * Allows the chatbot to continue the conversation
 	 */
-	private void chat()
+	public String chat(String conversation)
 	{
-		String conversation = myDisplay.chatInput("What would you like to talk about today?");
-		while(sampleBot.lengthChecker(conversation))
-		{
-			conversation = sampleBot.processConversation(conversation);
-			conversation = myDisplay.chatInput(conversation);
-			
-			/*if(myBot.contentChecker(conversation))
-			{
-				myDisplay.chatInput("Wow, I had no idea you're interested in " + myBot.getContent() + ".") ;
-			}
-			else if(myBot.memeChecker(conversation))
-			{
-				myDisplay.chatInput("The dankest of memes.");
-			}
-			else if(myBot.politicalTopicChecker(conversation))
-			{
-				myDisplay.chatInput("What a political topic.");
-			}
-			else
-			{
-				myDisplay.chatInput("I've never heard of that topic before.");
-			}
-			
-//			if(!myBot.quitChecker(conversation))
-//			{
-//				conversation = myBot.processInput(conversation);
-//			}
-//			else
-//			{
-//				shutDown();
-//			}
-			
-			conversation = myDisplay.chatInput(conversation);*/
-		}
+		conversation = sampleBot.processConversation(conversation);
 		
+		return conversation;
+	}
+	
+	public String analyze(String userName)
+	{
+		String userAnalysis = "The Twitt user " + userName + "has.....";
+		
+		return userAnalysis;
 	}
 	
 	/**

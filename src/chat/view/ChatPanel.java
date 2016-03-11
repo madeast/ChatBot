@@ -1,9 +1,19 @@
 package chat.view;
 
-import chat.controller.ChatController;
-import javax.swing.*;
-import java.awt.event.*;
 import java.awt.Color;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+
+import javax.swing.JButton;
+import javax.swing.JLabel;
+import javax.swing.JPanel;
+import javax.swing.JScrollPane;
+import javax.swing.JTextArea;
+import javax.swing.JTextField;
+import javax.swing.ScrollPaneConstants;
+import javax.swing.SpringLayout;
+
+import chat.controller.ChatController;
 
 /**
  * Allows me to control all the design features of the chatbot frame.
@@ -16,12 +26,14 @@ public class ChatPanel extends JPanel
 	private JButton firstButton;
 	private JButton tweetButton;
 	private JButton saveButton;
+	private JButton analyzeTwitterButton;
 	private JButton loadButton;
 	private JScrollPane textPane;
 	private JTextField firstTextField;
 	private SpringLayout baseLayout;
 	private JTextArea firstTextArea;
 	private JLabel firstLabel;
+	
 	
 	
 /**
@@ -33,7 +45,14 @@ public class ChatPanel extends JPanel
 		this.baseController = baseController;	
 		baseLayout = new SpringLayout();
 		firstButton = new JButton("This Button is just a conversation starter, and a treat giver!");
+		tweetButton = new JButton("This is for a tweet!");
 		firstLabel = new JLabel("I Canz Haz Chatz");
+		baseLayout.putConstraint(SpringLayout.NORTH, firstLabel, 6, SpringLayout.SOUTH, firstButton);
+		baseLayout.putConstraint(SpringLayout.EAST, firstLabel, -170, SpringLayout.EAST, this);
+		firstTextArea = new JTextArea(10, 15);
+		saveButton = new JButton("This is for pausing the conversation!");
+		loadButton = new JButton("This is for resuming the conversation!");
+		analyzeTwitterButton = new JButton("Analytics");
 		
 		
 	
@@ -63,11 +82,12 @@ public class ChatPanel extends JPanel
 		this.setBackground(Color.GREEN);
 		this.add(firstButton);
 		this.add(tweetButton);
-		this.add(saveButton);
+		this.add(analyzeTwitterButton);
 		this.add(loadButton);
 		this.add(firstLabel);
 		this.add(textPane);
 		firstTextField = new JTextField("Enter wordy things here.");
+		firstTextArea = new JTextArea("");
 		this.add(firstTextField);
 		firstTextField.setToolTipText("Type here, and give me bell rubs");
 		//this.add(firstTextArea);
@@ -80,12 +100,10 @@ public class ChatPanel extends JPanel
 	{
 		baseLayout.putConstraint(SpringLayout.SOUTH, firstButton, -26, SpringLayout.SOUTH, this);
 		baseLayout.putConstraint(SpringLayout.EAST, firstButton, -10, SpringLayout.EAST, this);
-		baseLayout.putConstraint(SpringLayout.WEST, firstLabel, 170, SpringLayout.WEST, this);
 		baseLayout.putConstraint(SpringLayout.NORTH, textPane, 20, SpringLayout.NORTH, this);
 		baseLayout.putConstraint(SpringLayout.WEST, textPane, 100, SpringLayout.WEST, this);
 		baseLayout.putConstraint(SpringLayout.SOUTH, textPane, 250, SpringLayout.NORTH, this);
 		baseLayout.putConstraint(SpringLayout.EAST, textPane, -20, SpringLayout.EAST, this);
-		baseLayout.putConstraint(SpringLayout.SOUTH, firstLabel, -6, SpringLayout.NORTH, firstTextField);
 		baseLayout.putConstraint(SpringLayout.WEST, firstTextField, 138, SpringLayout.WEST, this);
 		baseLayout.putConstraint(SpringLayout.SOUTH, firstTextField, -6, SpringLayout.NORTH, firstButton);
 		baseLayout.putConstraint(SpringLayout.NORTH, firstTextArea, 10, SpringLayout.NORTH, this);
@@ -101,7 +119,7 @@ public class ChatPanel extends JPanel
 		{
 			public void actionPerformed(ActionEvent click)
 			{
-				
+				firstTextArea.setText(baseController.chat(firstTextField.getText()));
 			}
 		});
 		
@@ -109,11 +127,19 @@ public class ChatPanel extends JPanel
 		{
 			public void actionPerformed(ActionEvent click)
 			{
-				baseController.sendTweet("No text to send!");
+				baseController.sendTweet("No text to send! #MadEastRulez");
 			}
 		});
-			
-	
+		
+		analyzeTwitterButton.addActionListener(new ActionListener()
+		{
+			public void actionPerformed(ActionEvent click)
+			{
+				String user = firstTextField.getText();
+				String results = baseController.analyze(user);
+				firstTextArea.setText(results);
+			}
+		});
 	}
 	
 	/**
