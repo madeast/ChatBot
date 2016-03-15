@@ -61,12 +61,39 @@ public class CtecTwitter
 		return scrubbedString;
 	}
 	
+	@SuppressWarnings("unchecked")
 	private List removeCommonEnglishWords(List<String> wordList)
 	{
+		String[] boringWords = importWordsToArray();
+		for(int count = 0; count < wordList.size(); count++)
+		{
+			for(int removeSpot = 0; removeSpot < boringWords.length; removeSpot++)
+			{
+				if(wordList.get(count).equalsIgnoreCase(boringWords[removeSpot]))
+				{
+					wordList.remove(count);
+					count--;
+					removeSpot = boringWords.length;
+				}
+			}
+		}
+		removeTwitterUsernamesFromList(wordList);
 		
 		return wordList;
 	}
 	
+	private String[] importWordsToArray()
+	{
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	private void removeTwitterUsernamesFromList(List<String> wordList)
+	{
+		// TODO Auto-generated method stub
+		
+	}
+
 	private void removeEmptyText()
 	{
 		for(int spot = 0; spot < wordList.size(); spot++)
