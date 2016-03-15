@@ -1,7 +1,6 @@
 package chat.model;
 
-import java.io.File;
-import java.io.FileNotFoundException;
+import java.io.*;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
@@ -85,7 +84,7 @@ public class CtecTwitter
 		return wordList;
 	}
 	
-	private String[] importWordsToArray()
+	private String[] importWordsToArray() // 2nd Method for Analyze.
 	{
 		String[] boringWords;
 		int wordCount = 0;
@@ -109,6 +108,7 @@ public class CtecTwitter
 		}
 		catch(FileNotFoundException e)
 		{
+			baseController.handleErrors(e.getMessage());
 			return new String[0];
 		}
 		return boringWords;
@@ -116,8 +116,14 @@ public class CtecTwitter
 
 	private void removeTwitterUsernamesFromList(List<String> wordList)
 	{
-		// TODO Auto-generated method stub
-		
+		for(int wordCount = 0; wordCount < wordList.size(); wordCount++)
+		{
+			if(wordList.get(wordCount).length() >= 1 && wordList.get(wordCount).charAt(0) == '@')
+			{
+				wordList.remove(wordCount);
+				wordCount--;
+			}
+		}
 	}
 
 	private void removeEmptyText()
@@ -132,7 +138,37 @@ public class CtecTwitter
 		}
 	}
 	
-	public void loadTweets(String twitterHandle) throws TwitterException
+	public String topResults()
+	{
+		String tweetResults = "";
+		
+		int topWordLocation = 0;
+		int topCount = 0;
+		
+		for(int index = 0; index < wordList.size(); index++)
+		{
+			int wordUseCount = 1;
+			
+			for(int spot = index + 1; spot < wordList.size(); spot++)
+			{
+				if(wordList.get(index).equals(wordList.get(spot)))
+				{
+					wordUseCount++;
+				}
+				if(wordUseCount > topCount)
+				{
+					topCount = wordUseCount;
+					topWordLocation = index;
+				}
+			}
+		}
+		
+		tweetResults ="The top word in the tweets was " + wordList.get(topWordLocation) + " and it was used " + 
+				topCount + " times!";
+		return tweetResults;
+	}
+	
+	public void loadTweets(String twitterHandle) throws TwitterException //1st Method for analyze.
 	{
 		Paging statusPage= new Paging(1, 200);
 		int page = 1;
