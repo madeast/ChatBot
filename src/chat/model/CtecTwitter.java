@@ -69,7 +69,14 @@ public class CtecTwitter
 	
 	private void removeEmptyText()
 	{
-		
+		for(int spot = 0; spot < wordList.size(); spot++)
+		{
+			if(wordList.get(spot).equals(""))
+			{
+				wordList.remove(spot);
+				spot--;
+			}
+		}
 	}
 	
 	public void loadTweets(String twitterHandle) throws TwitterException
