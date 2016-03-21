@@ -1,11 +1,13 @@
-package chat.model;
+	package chat.model;
 
-import java.io.*;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 
+import twitter4j.GeoLocation;
 import twitter4j.Paging;
+import twitter4j.Query;
+import twitter4j.QueryResult;
 import twitter4j.Status;
 import twitter4j.Twitter;
 import twitter4j.TwitterException;
@@ -88,29 +90,23 @@ public class CtecTwitter
 	{
 		String[] boringWords;
 		int wordCount = 0;
-		try
+		
+		Scanner wordFile = new Scanner(getClass().getResourceAsStream("commonWords.txt"));
+		while(wordFile.hasNext())
 		{
-			Scanner wordFile = new Scanner(new File("commonWords.txt"));
-			while(wordFile.hasNext())
-			{
-				wordCount++;
-				wordFile.next();
-			}
-			wordFile.reset();
-			boringWords = new String[wordCount];
-			int boringWordCount = 0;
-			while(wordFile.hasNext())
-			{
-				boringWords[boringWordCount] = wordFile.next();
-				boringWordCount++;
-			}
-			wordFile.close();
+			wordCount++;
+			wordFile.next();
 		}
-		catch(FileNotFoundException e)
+		wordFile = new Scanner(getClass().getResourceAsStream("commonWords.txt"));
+		boringWords = new String[wordCount];
+		int boringWordCount = 0;
+		while(wordFile.hasNext())
 		{
-			baseController.handleErrors(e.getMessage());
-			return new String[0];
+			boringWords[boringWordCount] = wordFile.next();
+			boringWordCount++;
 		}
+		wordFile.close();
+			
 		return boringWords;
 	}
 
@@ -170,6 +166,8 @@ public class CtecTwitter
 	
 	public void loadTweets(String twitterHandle) throws TwitterException //1st Method for analyze.
 	{
+		statusList.clear();
+		wordList.clear();
 		Paging statusPage= new Paging(1, 200);
 		int page = 1;
 		while(page <= 10)
@@ -188,6 +186,31 @@ public class CtecTwitter
 		}
 		removeCommonEnglishWords(wordList);
 		removeEmptyText();
+	}
+	
+	public String sampleInvestigation()
+	{
+		String results = "";
+		
+		Query query = new Query("Games");
+		query.setCount(100);
+		query.setGeoCode(new GeoLocation(40.587521, -111.869178), 5, Query.MILES);
+		query.setSince("2016-1-1");
+		try
+		{
+			QueryResult result= chatBotTwitter.search(query);
+			results.concat("Cou8nt : " + result.getTweets().size());
+			for (Status tweet : result.getTweets())
+			{
+				results.concat("@" + tweet.getUser().getName() + ": " + tweet.getText() + "\n");
+			}
+		}
+		catch(TwitterException error)
+		{
+			error.printStackTrace();
+		}
+		
+		return results;
 	}
 	
 }
