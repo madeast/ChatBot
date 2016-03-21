@@ -15,7 +15,7 @@ import twitter4j.TwitterFactory;
 import chat.controller.ChatController;
 
 /**
- * 
+ * q
  * @author Easton Madsen
  * @version .3
  * 
