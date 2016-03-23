@@ -48,7 +48,6 @@ public class Chatbot
 		this.memesList.add("Unhelpful High School Teacher");
 		this.memesList.add("Aliens");
 		
-		
 	}
 	
 	/**
