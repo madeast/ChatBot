@@ -198,8 +198,8 @@ public class CtecTwitter
 		query.setSince("2016-1-1");
 		try
 		{
-			QueryResult result= chatBotTwitter.search(query);
-			results.concat("Cou8nt : " + result.getTweets().size());
+			QueryResult result = chatBotTwitter.search(query);
+			results.concat("Count : " + result.getTweets().size());
 			for (Status tweet : result.getTweets())
 			{
 				results.concat("@" + tweet.getUser().getName() + ": " + tweet.getText() + "\n");

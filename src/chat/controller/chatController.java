@@ -69,6 +69,12 @@ public class ChatController
 		return userAnalysis;
 	}
 	
+	public String Investigate()
+	{
+		String twitterThings = chatTwitter.sampleInvestigation();
+		return twitterThings;
+	}
+	
 	/**
 	 * The Getters and Setters of the class.
 	 * @return

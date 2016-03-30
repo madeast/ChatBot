@@ -14,6 +14,7 @@ import javax.swing.ScrollPaneConstants;
 import javax.swing.SpringLayout;
 
 import chat.controller.ChatController;
+import chat.controller.IOController;
 
 /**
  * Allows me to control all the design features of the chatbot frame.
@@ -47,8 +48,8 @@ public class ChatPanel extends JPanel
 		firstButton = new JButton("Conversation");
 		tweetButton = new JButton("This is for a tweet!");
 		firstLabel = new JLabel("I Canz Haz Chatz");
-		saveButton = new JButton("Pause");
-		loadButton = new JButton("Resume");
+		saveButton = new JButton("Save");
+		loadButton = new JButton("Load");
 		analyzeTwitterButton = new JButton("Analytics");
 		firstTextArea = new JTextArea();
 	
@@ -82,10 +83,10 @@ public class ChatPanel extends JPanel
 		this.add(tweetButton);
 		this.add(analyzeTwitterButton);
 		this.add(loadButton);
+		this.add(saveButton);
 		this.add(firstLabel);
 		this.add(textPane);
 		firstTextField = new JTextField("Enter wordy things here.");
-		
 		firstTextArea = new JTextArea("");
 		this.add(firstTextField);
 		firstTextField.setToolTipText("Type here, and give me bell rubs");
@@ -97,7 +98,8 @@ public class ChatPanel extends JPanel
 	 */
 	private void setupLayout()
 	{
-		
+		baseLayout.putConstraint(SpringLayout.WEST, saveButton, 13, SpringLayout.EAST, loadButton);
+		baseLayout.putConstraint(SpringLayout.NORTH, saveButton, 0, SpringLayout.NORTH, firstButton);
 		baseLayout.putConstraint(SpringLayout.NORTH, firstButton, 6, SpringLayout.SOUTH, tweetButton);
 		baseLayout.putConstraint(SpringLayout.EAST, firstButton, -10, SpringLayout.EAST, tweetButton);
 		baseLayout.putConstraint(SpringLayout.EAST, tweetButton, -29, SpringLayout.EAST, this);
@@ -142,9 +144,25 @@ public class ChatPanel extends JPanel
 		{
 			public void actionPerformed(ActionEvent click)
 			{
-				String user = firstTextField.getText();
-				String results = baseController.analyze(user);
-				firstTextArea.setText(results);
+				firstTextArea.setText(baseController.Investigate());
+			}
+		});
+		
+		saveButton.addActionListener(new ActionListener()
+		{
+			public void actionPerformed(ActionEvent click)
+			{
+				String loadedText = IOController.saveFile(firstTextArea.getText());
+				firstTextArea.setText(loadedText);
+			}
+		});
+		
+		loadButton.addActionListener(new ActionListener()
+		{
+			public void actionPerformed(ActionEvent click)
+			{
+				String file = IOController.readTextFromFile(firstLabel.getText());
+				firstLabel.setText(file);
 			}
 		});
 	}
